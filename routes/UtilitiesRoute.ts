@@ -10,4 +10,5 @@ router.post("/create", createUtilities as any)
 router.put("/update/:id", updateUtility as any)
 router.delete("/delete/:id", deleteUtility)
 
-export { router };
+
+export default router;

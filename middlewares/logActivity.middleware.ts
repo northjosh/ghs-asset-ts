@@ -69,7 +69,7 @@ const logActivity = (req:Request, res: Response, next: NextFunction) => {
         });
 
       // Call the original res.send function
-      originalSend.apply(this, arguments);
+      originalSend.apply(this, arguments as any);
     };
 
   } else if (req.originalUrl === "/api/user/login" && req.method === "POST") {
@@ -78,7 +78,7 @@ const logActivity = (req:Request, res: Response, next: NextFunction) => {
     // Override res.send for login route
     res.send = function (): any {
       // Call the original res.send function
-      originalSend.apply(this, arguments);
+      originalSend.apply(this, arguments as any);
 
       // Parse the response body
       const responseBody = arguments[0] ? JSON.parse(arguments[0]) : {};
@@ -86,7 +86,7 @@ const logActivity = (req:Request, res: Response, next: NextFunction) => {
       // Extract the userId from the response body
       const userId = responseBody.userId;
       console.log("Creating activity log");
-      const activity = new ActivityLog({
+      const activity = new Activity({
         userId,
         action: `${req.method} ${req.originalUrl}`,
         details: {

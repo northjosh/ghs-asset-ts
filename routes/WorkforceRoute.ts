@@ -11,7 +11,6 @@ router.put('/update/:id', WorkforceController.updateWorkforce as any);
 router.delete('/delete/:id', WorkforceController.deleteWorkforce as any);
 
 
-
-module.exports = router;
+export default router;
 
 

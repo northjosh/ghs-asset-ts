@@ -83,4 +83,6 @@ const deleteResearchCenter = async (req: Request, res:Response) => {
 	}
 }
 
-export {getResearchCenters, getResearchCenterById, createResearchCenter, deleteResearchCenter, updateResearchCenter}
+const ResearchCenterController = {getResearchCenters, getResearchCenterById, createResearchCenter, deleteResearchCenter, updateResearchCenter}
+
+export { ResearchCenterController };

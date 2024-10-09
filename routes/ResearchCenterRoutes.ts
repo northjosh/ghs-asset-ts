@@ -1,13 +1,16 @@
-const researchController = require("../controllers/ResearchCenterController")
-const express = require("express")
+import { Router } from "express"
+import {ResearchCenterController}  from '../controllers/ResearchCenter.controller'
 
-const router = express.Router()
 
-router.post("/create", researchController.createResearchCenter)
-router.get("/", researchController.getResearchCenters)
-router.get("/:id", researchController.getResearchCenterById)
-router.put("/update/:id", researchController.updateResearchCenter)
-router.delete("/delete/:id", researchController.deleteResearchCenter)
+const router = Router()
+
+router.post("/create", ResearchCenterController.createResearchCenter as any)
+router.get("/", ResearchCenterController.getResearchCenters)
+router.get("/:id", ResearchCenterController.getResearchCenterById)
+router.put("/update/:id", ResearchCenterController.updateResearchCenter as any)
+router.delete("/delete/:id", ResearchCenterController.deleteResearchCenter)
 
 
 module.exports = router
+
+export default router;
