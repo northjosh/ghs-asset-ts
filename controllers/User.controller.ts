@@ -1,16 +1,11 @@
 import { User } from "../models/User";
 import { configDotenv } from "dotenv";
-import { hash, genSaltSync, compareSync } from "bcrypt";
+import { hash, compareSync } from "bcrypt";
 import { Request, Response } from "express";
 import { sign } from "jsonwebtoken";
-import { stringify } from "querystring";
-
 
 
 configDotenv()
-
-
-
 
 const getUsers = async (req: Request, res:Response) => {
     try {
@@ -22,9 +17,9 @@ const getUsers = async (req: Request, res:Response) => {
   };
   
   const createUser = async (req: Request, res:Response) => {
-    console.log("Role: ", req.user.role);
+    console.log("Role: ", req.user?.role);
     // Check if the user is an admin
-    if (req.user.role !== "admin") {
+    if (req.user?.role !== "admin") {
       return res
         .status(403)
         .json({ message: "Forbidden: Only admins can create users" });
@@ -61,7 +56,7 @@ const getUsers = async (req: Request, res:Response) => {
     }
   
     // Check if password is correct
-    const isPasswordValid = await compareSync(password, user.password);
+    const isPasswordValid = compareSync(password, user.password);
     if (!isPasswordValid) {
       return res.status(400).json({ message: "Invalid username or password" });
     }
@@ -70,16 +65,16 @@ const getUsers = async (req: Request, res:Response) => {
     const token = sign(
       {
         id: user._id,
-        role: user.position,
+        role: user.role,
         department: user.department,
       },
-      process.env.AUTH_SECRET
+      process.env.AUTH_SECRET!
     );
   
     res.json({
       message: "Logged in successfully",
       token,
-      role: user.position,
+      role: user.role,
       userId: user._id,
     });
   };

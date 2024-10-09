@@ -4,7 +4,7 @@ interface IUser {
   name: string;
   username: string;
   email: string;
-  position: string;
+  role: string;
   department: string;
   password: string;
   last_login: Date;
@@ -29,17 +29,17 @@ const userSchema = new Schema<IUser, UserModel>({
     required: true,
   },
 
-  position: {
+  role: {
     type: String,
     enum: ["director", "officer", "admin"],
     required: true,
   },
+
   department: {
     type: String,
     required: false
 
   },
-
   password: {
     type: String,
     required: true,
@@ -65,4 +65,4 @@ const userSchema = new Schema<IUser, UserModel>({
 
 const User = model<IUser, UserModel>("User", userSchema)
 
-export { User }
+export { User, IUser }
