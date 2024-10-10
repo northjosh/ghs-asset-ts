@@ -24,13 +24,21 @@ jobs:
 
         - name : Install yarn and and dependencies
           run: |
-            npm -i yarn
+            npm i yarn ts-node typescript ntypescript 
             yarn install
+
+        - name: Build
+          run: |
+            yarn build
+
+        - name: List all files
+          run: |
+            echo "These are the files" && ls 
         
-        - name: Zip folder for release
+        - name: Zip folder for release 
           run: |
             tar -czf ghs-asset.tar.gz .
-        
+      
         - name: Create Release
           uses: ncipollo/release-action@v1
           with:
