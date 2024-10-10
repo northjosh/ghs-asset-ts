@@ -24,7 +24,7 @@ jobs:
 
         - name : Install yarn and and dependencies
           run: |
-            npm -i yarn
+            npm i yarn
             yarn install
         
         - name: Zip folder for release
