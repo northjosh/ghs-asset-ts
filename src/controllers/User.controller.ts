@@ -19,11 +19,11 @@ const getUsers = async (req: Request, res:Response) => {
   const createUser = async (req: Request, res:Response) => {
     console.log("Role: ", req.user?.role);
     // Check if the user is an admin
-    if (req.user?.role !== "admin") {
-      return res
-        .status(403)
-        .json({ message: "Forbidden: Only admins can create users" });
-    }
+    // if (req.user?.role !== "admin") {
+    //   return res
+    //     .status(403)
+    //     .json({ message: "Forbidden: Only admins can create users" });
+    // }
   
     try {
       const { username } = req.body;

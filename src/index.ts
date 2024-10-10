@@ -21,6 +21,7 @@ dotenv.config({path: "./env"});
 console.log(process.env.PORT)
 
 
+
 const corsOptions = { 
   origin: "*",
   optionsSuccessStatus: 200,
@@ -30,7 +31,7 @@ mongoose
   .connect(
     `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@assets.rxllb.mongodb.net/?retryWrites=true&w=majority&appName=Assets`
   )
-  .then((r) => console.log("Database connected successfully"));
+  .then((r: any) => console.log("Database connected successfully"));
 
 
 let port: any = process.env.PORT
@@ -44,7 +45,7 @@ app.get("/", (req, res) => {
   res.json({ message: "This is the homepage" });
 });
 
-
+// middleware
 app.use(authenticateToken as any);
 app.use(logActivity);
 

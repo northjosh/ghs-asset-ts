@@ -1,0 +1,39 @@
+name: Node Build
+# description: Builds Express Application
+
+
+on: 
+  push:
+    branches: [ main ]
+    tags: 
+      - "*"
+
+  # workflow_disptch: 
+
+jobs:
+    build:
+      runs-on : ubuntu-latest
+      
+      steps:
+        - uses : actions@checkout@v2
+
+        - name: Run latest NodeJs
+          uses: actions/setup-node@v2
+          with:
+            node_version: 22
+
+        - name : Install yarn and and dependencies
+          run: |
+            npm -i yarn
+            yarn install
+        
+        - name: Zip folder for release
+          run: |
+            tar -czf ghs-asset.tar.gz .
+        
+        - name: Create Release
+          uses: ncipollo/release-action@v1
+          with:
+            artifacts: "ghs-asset.tar.gz"
+          
+        
