@@ -15,7 +15,7 @@ jobs:
       runs-on : ubuntu-latest
       
       steps:
-        - uses : actions/@checkout@v2
+        - uses : actions/checkout@v2
 
         - name: Run latest NodeJs
           uses: actions/setup-node@v2
@@ -24,7 +24,7 @@ jobs:
 
         - name : Install yarn and and dependencies
           run: |
-            npm -i yarns
+            npm -i yarn
             yarn install
         
         - name: Zip folder for release
