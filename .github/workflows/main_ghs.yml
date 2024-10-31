@@ -21,6 +21,12 @@ jobs:
         with:
           node-version: '20.x'
 
+      - name: Setup Sentry CLI
+        uses: matbour/setup-sentry-cli@v1
+        with:
+          version: latest # optional if 'latest'
+          token: ${{ SECRETS.SENTRY_AUTH_TOKEN }} # from GitHub secrets
+
       - name: npm install, build, and test
         run: |
           npm install
