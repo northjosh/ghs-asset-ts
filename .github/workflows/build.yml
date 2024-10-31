@@ -35,15 +35,16 @@ jobs:
           run: |
             echo "These are the files" && ls 
         
-        - name: Zip folder for release 
-          uses: montudor/action-zip@v1
+        - name: Zip artifact for release 
+          uses: actions/upload-artifact
           with:
-              rgs: zip -qq -r ghs-ts.zip .
+            name: ghs-build
+            path: ./
       
         - name: Create Release
           uses: ncipollo/release-action@v1
           with:
-            artifacts: "ghs-ts.zip"
+            artifacts: "ghs-ts.tar.gz"
         
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v2

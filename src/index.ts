@@ -21,6 +21,7 @@ dotenv.config({path: "./env"});
 console.log(process.env.PORT)
 
 
+const mongoUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGO_URI
 
 const corsOptions = { 
   origin: "*",
@@ -28,13 +29,11 @@ const corsOptions = {
 };
 
 mongoose
-  .connect(
-    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@assets.rxllb.mongodb.net/?retryWrites=true&w=majority&appName=Assets`
-  )
+  .connect(mongoUri!)
   .then((r: any) => console.log("Database connected successfully"));
 
 
-let port: any = process.env.PORT
+let port: any = process.env.PORT || 80;
 
 const app = express();
 
@@ -60,9 +59,6 @@ app.use("/api/medical-school", medicalSchoolRoutes);
 app.use("/api/property", propertyRoutes);
 app.use("/api/workforce", workforceRoutes);
 app.use("/api/pharmaceuticals", pharmaceuticalRoutes);
-
-
-
 
 
 
