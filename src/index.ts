@@ -61,7 +61,7 @@ app.get("/debug-sentry", function mainHandler(req, res) {
 // app.use(logActivity);
 
 app.use(cors(corsOptions));
-
+//
 // routes
 app.use("/api/user", userRoutes);
 app.use("/api/utility", utilitiesRoutes);
