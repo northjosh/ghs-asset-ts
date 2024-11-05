@@ -48,7 +48,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.json({ message: "This is the homepage" });
+  res.json({ message: "This is the staging homepage" });
 });
 
 app.get("/debug-sentry", function mainHandler(req, res) {
